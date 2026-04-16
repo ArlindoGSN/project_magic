@@ -23,7 +23,7 @@ export default function AnalyzePage() {
                     <ul className="list-disc pl-5">
                         {state.map((card: any, idx: number) => (
                             <li key={idx}>
-                                {card.quantity}x {card.name} - {card.set} ({card.daysLeft} dias restantes)
+                                {card.quantity}x {card.name} - {card.set} ({card.monthsLeft} meses restantes)
                             </li>
                         ))}
                     </ul>

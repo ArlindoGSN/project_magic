@@ -4,7 +4,7 @@ import { parseDeckList } from "@/app/lib/parser/deck-parser";
 import { mtgClient } from "@/app/lib/mtg/mtg-client";
 import {
     calculateRotationDate,
-    getDaysUntilRotation,
+    getMonthsUntilRotation,
 } from "@/app/lib/mtg/rotation-service";
 
 export async function analyzeDeckAction(prevState: any, formData: FormData) {
@@ -41,7 +41,7 @@ export async function analyzeDeckAction(prevState: any, formData: FormData) {
             result.push({
                 ...card,
                 set: set.name,
-                daysLeft: getDaysUntilRotation(rotationDate),
+                monthsLeft: getMonthsUntilRotation(rotationDate),
             });
             // Small delay to prevent rate limiting (using 3 seconds)
             await new Promise((resolve) => setTimeout(resolve, 3000));
