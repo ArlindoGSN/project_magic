@@ -118,7 +118,7 @@ export default function AnalyzePage() {
                         )}
 
                         {/* Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 gap-6">
                             {state.found.map((card: any, idx: number) => (
                                 <div key={idx} className="group relative bg-[#0a0f20]/80 rounded-[2rem] border border-white/5 p-4 hover:border-indigo-500/40 hover:bg-[#0f152e] transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 flex flex-col h-full backdrop-blur-md">
 
@@ -147,7 +147,7 @@ export default function AnalyzePage() {
                                     {/* Card Details */}
                                     <div className="flex flex-col flex-1 justify-between gap-4 px-2 pb-2">
                                         <div>
-                                            <h3 className="font-bold text-lg text-white leading-tight mb-1" title={card.name}>
+                                            <h3 className="font-bold text-xl text-white leading-tight mb-1 truncate" title={card.name}>
                                                 {card.name}
                                             </h3>
                                             <div className="flex items-center gap-1.5 text-xs font-semibold text-indigo-400/80 uppercase tracking-wide">
@@ -160,10 +160,10 @@ export default function AnalyzePage() {
                                             <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Lifespan</span>
                                             {card.monthsLeft > 0 ? (
                                                 <span className={`flex items-center gap-1 font-bold text-sm ${card.monthsLeft < 6
-                                                        ? 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]'
-                                                        : card.monthsLeft <= 12
-                                                            ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]'
-                                                            : 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]'
+                                                    ? 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]'
+                                                    : card.monthsLeft <= 12
+                                                        ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]'
+                                                        : 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]'
                                                     }`}>
                                                     {card.monthsLeft} {card.monthsLeft === 1 ? "month" : "months"}
                                                 </span>
