@@ -7,126 +7,174 @@ export default function AnalyzePage() {
     const [state, formAction, isPending] = useActionState(analyzeDeckAction, null);
 
     return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-12 font-sans selection:bg-fuchsia-500 selection:text-white">
-            <div className="max-w-5xl mx-auto space-y-12">
-                
-                {/* Header Section */}
-                <div className="text-center space-y-4">
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-br from-fuchsia-400 to-purple-600 bg-clip-text text-transparent pb-2">
-                        Magic: The Gathering
+        <div className="min-h-screen bg-[#05050f] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white pb-20 relative overflow-hidden">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+            <div className="max-w-6xl mx-auto px-6 md:px-12 pt-16 relative z-10 space-y-16">
+
+                {/* Hero / Header Section */}
+                <div className="text-center md:space-y-6 space-y-4 max-w-3xl mx-auto mt-8">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold uppercase tracking-widest text-indigo-300 mb-2">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                        </span>
+                        Tracker Cronomágico
+                    </div>
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter">
+                        <span className="text-white">Deck</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500"> Explorer</span>
                     </h1>
-                    <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                        Analise seu deck para descobrir quais edições compõem a sua lista e quantos meses faltam para rotacionarem do Standard.
+                    <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed">
+                        Desvende o fluxo temporal do seu arsenal. Cole sua lista de deck abaixo e identifique o momento exato em que cada carta rotacionará do universo Standard.
                     </p>
                 </div>
 
-                {/* Form Section */}
-                <form action={formAction} className="bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 md:p-8 space-y-6 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-fuchsia-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-                    
-                    <div className="relative">
-                        <label htmlFor="deck" className="block text-sm font-semibold text-slate-300 mb-2">Sua Lista de Deck (Importação do Arena MTG)</label>
-                        <div className="flex items-center gap-2 mb-3 text-xs text-amber-500 bg-amber-500/10 px-3 py-2 rounded-lg border border-amber-500/20 w-fit">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                            Por favor, certifique-ce de usar os nomes das cartas em Inglês para que a busca funcione perfeitamente.
+                {/* Main Form Section */}
+                <div className="max-w-2xl mx-auto">
+                    <form action={formAction} className="relative group">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                        <div className="relative bg-[#0d1123] border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl">
+
+                            <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <label htmlFor="deck" className="block text-sm font-bold text-slate-200 tracking-wide">
+                                    Grimório de Cartas (Arena Export)
+                                </label>
+                                <div className="flex items-center gap-2 text-xs font-medium text-amber-300 bg-amber-500/10 px-3 py-1.5 rounded-full border border-amber-500/20 w-fit">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    Nomes devem estar em Inglês
+                                </div>
+                            </div>
+
+                            <textarea
+                                id="deck"
+                                name="deck"
+                                className="bg-[#050510]/50 border border-indigo-500/20 rounded-2xl p-5 w-full h-64 text-indigo-100 placeholder-indigo-900/60 focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 transition-all font-mono text-sm resize-y text-opacity-90 custom-scrollbar shadow-inner"
+                                placeholder="Insira o texto aqui...&#10;&#10;Exemplo:&#10;4 Fading Hope (MID) 20&#10;2 Otawara, Soaring City (NEO) 271..."
+                            />
+
+                            <div className="mt-6">
+                                <button
+                                    disabled={isPending}
+                                    className="w-full relative inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-8 py-4 font-bold text-[#05050f] overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group/btn"
+                                >
+                                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-300 via-indigo-300 to-purple-300 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                                    <span className="relative flex items-center gap-2">
+                                        {isPending ? (
+                                            <>
+                                                <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                Consultando o Multiverso...
+                                            </>
+                                        ) : (
+                                            <>
+                                                Escanear Rotação
+                                                <svg className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                            </>
+                                        )}
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                        <textarea
-                            id="deck"
-                            name="deck"
-                            className="bg-slate-950/50 border border-slate-700/50 rounded-2xl p-5 w-full h-64 text-slate-300 placeholder-slate-600 focus:outline-none focus:border-fuchsia-500/50 focus:ring-1 focus:ring-fuchsia-500/50 transition-all font-mono text-sm resize-y shadow-inner"
-                            placeholder="Exemplo:&#10;4 Fading Hope (MID) 20&#10;2 Otawara, Soaring City (NEO) 271..."
-                        />
-                    </div>
-                    
-                    <button 
-                        disabled={isPending}
-                        className="w-full relative inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-purple-600 to-fuchsia-600 px-8 py-4 font-bold text-white shadow-lg shadow-fuchsia-500/25 ring-1 ring-white/10 transition-all hover:scale-[1.01] hover:shadow-xl hover:shadow-fuchsia-500/40 disabled:opacity-60 disabled:pointer-events-none active:scale-[0.98]"
-                    >
-                        {isPending ? (
-                            <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Analisando as cartas do Multiverso...
-                            </>
-                        ) : (
-                            "Analisar Deck"
-                        )}
-                    </button>
-                </form>
+                    </form>
+                </div>
 
                 {/* Results Section */}
                 {state && (
-                    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
-                        {/* Errors / Not Found Modal Area */}
+                    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-16 duration-1000 pt-8 border-t border-white/5">
+
+                        {/* Errors / Not Found Alert */}
                         {state.notFound && state.notFound.length > 0 && (
-                            <div className="bg-rose-950/40 border border-rose-900/50 rounded-2xl p-6 shadow-xl backdrop-blur-md">
-                                <h3 className="flex items-center gap-2 text-rose-400 font-bold text-lg mb-4">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    Não conseguimos encontrar algumas cartas:
+                            <div className="max-w-3xl mx-auto bg-rose-950/30 border border-rose-500/20 rounded-2xl p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-rose-500 to-orange-500"></div>
+                                <h3 className="flex items-center gap-3 text-rose-400 font-bold text-xl mb-3">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    Algumas anomalias detectadas
                                 </h3>
-                                <p className="text-sm text-rose-300/80 mb-4">
-                                    Isso pode ocorrer porque as cartas estão listadas em outro idioma (ex: português),
-                                    o nome contém erros de digitação, ou é um formato especial não reconhecido.
+                                <p className="text-rose-200/70 text-sm mb-6 leading-relaxed">
+                                    Não foi possível encontrar as cartas abaixo. Certifique-se de que estão no idioma inglês e que sejam válidas no registro ofical.
                                 </p>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-rose-200">
+                                <div className="flex flex-wrap gap-2">
                                     {state.notFound.map((name: string, i: number) => (
-                                        <li key={i} className="flex items-center gap-2 bg-rose-900/20 px-3 py-2 rounded-lg border border-rose-800/30">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-rose-500/50"></span>
+                                        <span key={i} className="inline-flex items-center gap-1.5 bg-rose-900/40 text-rose-200 px-3 py-1.5 rounded-lg border border-rose-500/20 text-sm font-medium shadow-sm">
                                             {name}
-                                        </li>
+                                        </span>
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         )}
 
-                        <div className="flex items-center gap-6">
-                            <h2 className="text-2xl font-bold text-slate-100">Resultados da Análise</h2>
-                            <div className="h-px bg-slate-800 flex-1"></div>
-                        </div>
+                        {/* Cards Header */}
+                        {state.found.length > 0 && (
+                            <div className="flex flex-col items-center justify-center gap-2 mb-8 text-center">
+                                <h2 className="text-3xl font-black tracking-tight text-white">Cartas Escaneadas</h2>
+                                <p className="text-indigo-300/80">Identificamos o panorama de rotação para as suas magias.</p>
+                            </div>
+                        )}
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {/* Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 gap-6">
                             {state.found.map((card: any, idx: number) => (
-                                <div key={idx} className="group relative bg-[#0f172a] rounded-2xl border border-slate-800 p-4 hover:border-fuchsia-500/30 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1">
-                                    
-                                    {/* Card Image */}
-                                    <div className="relative aspect-[5/7] w-full bg-slate-900 rounded-xl overflow-hidden mb-5 border border-slate-700/50 shadow-inner">
+                                <div key={idx} className="group relative bg-[#0a0f20]/80 rounded-[2rem] border border-white/5 p-4 hover:border-indigo-500/40 hover:bg-[#0f152e] transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 flex flex-col h-full backdrop-blur-md">
+
+                                    {/* Card Image Wrapper */}
+                                    <div className="relative aspect-[5/7] w-full bg-[#050510] rounded-[1.5rem] overflow-hidden mb-5 border border-white/5 shadow-inner">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                         {card.imageUrl ? (
-                                            <img 
-                                                src={card.imageUrl} 
-                                                alt={card.name} 
-                                                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                                            <img
+                                                src={card.imageUrl}
+                                                alt={card.name}
+                                                className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
                                                 loading="lazy"
                                             />
                                         ) : (
-                                            <div className="absolute inset-0 flex items-center justify-center text-slate-600 text-sm p-4 text-center font-medium">
-                                                Imagem não disponível
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-indigo-500/50 p-6 text-center">
+                                                <svg className="w-12 h-12 mb-3 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                                <span className="text-xs font-semibold uppercase tracking-widest">Sem Imagem</span>
                                             </div>
                                         )}
-                                        {/* Quantity Badge */}
-                                        <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-sm font-black text-slate-200 border border-white/10 shadow-lg">
+                                        {/* Quantity Flash Badge */}
+                                        <div className="absolute top-3 right-3 z-20 bg-indigo-500 text-white font-black px-3 py-1.5 rounded-full text-sm shadow-xl shadow-indigo-500/40 border border-indigo-400">
                                             {card.quantity}x
                                         </div>
                                     </div>
-                                    
+
                                     {/* Card Details */}
-                                    <div className="space-y-3">
-                                        <h3 className="font-bold text-lg text-slate-200 leading-tight" title={card.name}>
-                                            {card.name}
-                                        </h3>
-                                        <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
-                                            <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                            <span className="truncate">{card.set}</span>
+                                    <div className="flex flex-col flex-1 justify-between gap-4 px-2 pb-2">
+                                        <div>
+                                            <h3 className="font-bold text-lg text-white leading-tight mb-1" title={card.name}>
+                                                {card.name}
+                                            </h3>
+                                            <div className="flex items-center gap-1.5 text-xs font-semibold text-indigo-400/80 uppercase tracking-wide">
+                                                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
+                                                AURA: {card.set}
+                                            </div>
                                         </div>
-                                        <div className="pt-3 border-t border-slate-800 flex justify-between items-center text-sm">
-                                            <span className="text-slate-500 text-xs uppercase tracking-wider font-bold">Rotação</span>
-                                            <span className={`font-semibold px-2.5 py-1 rounded-md text-xs ${card.monthsLeft < 6 ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
-                                                {card.monthsLeft > 0 ? `${card.monthsLeft} meses` : 'Rotacionado'}
-                                            </span>
+
+                                        <div className="p-3 bg-white/[0.03] rounded-xl border border-white/[0.05] flex justify-between items-center group-hover:bg-indigo-500/5 transition-colors">
+                                            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Ciclo Vital</span>
+                                            {card.monthsLeft > 0 ? (
+                                                <span className={`flex items-center gap-1 font-bold text-sm ${card.monthsLeft < 6
+                                                    ? 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]'
+                                                    : card.monthsLeft <= 12
+                                                        ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]'
+                                                        : 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]'
+                                                    }`}>
+                                                    {card.monthsLeft} meses
+                                                </span>
+                                            ) : (
+                                                <span className="font-bold text-sm text-slate-500 flex items-center gap-1">
+                                                    Expirado
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             ))}
                         </div>
