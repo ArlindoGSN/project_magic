@@ -14,7 +14,7 @@ export default function AnalyzePage() {
             <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none"></div>
 
             <div className="max-w-6xl mx-auto px-6 md:px-12 pt-16 relative z-10 space-y-16">
-                
+
                 {/* Hero / Header Section */}
                 <div className="text-center md:space-y-6 space-y-4 max-w-3xl mx-auto mt-8">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold uppercase tracking-widest text-indigo-300 mb-2">
@@ -38,7 +38,7 @@ export default function AnalyzePage() {
                     <form action={formAction} className="relative group">
                         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                         <div className="relative bg-[#0d1123] border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-xl">
-                            
+
                             <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                 <label htmlFor="deck" className="block text-sm font-bold text-slate-200 tracking-wide">
                                     Decklist
@@ -55,9 +55,9 @@ export default function AnalyzePage() {
                                 className="bg-[#050510]/50 border border-indigo-500/20 rounded-2xl p-5 w-full h-64 text-indigo-100 placeholder-indigo-900/60 focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 transition-all font-mono text-sm resize-y text-opacity-90 custom-scrollbar shadow-inner"
                                 placeholder="Insert text here...&#10;&#10;Example:&#10;4 Fading Hope (MID) 20&#10;2 Otawara, Soaring City (NEO) 271..."
                             />
-                            
+
                             <div className="mt-6">
-                                <button 
+                                <button
                                     disabled={isPending}
                                     className="w-full relative inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-8 py-4 font-bold text-[#05050f] overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group/btn"
                                 >
@@ -87,7 +87,7 @@ export default function AnalyzePage() {
                 {/* Results Section */}
                 {state && (
                     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-16 duration-1000 pt-8 border-t border-white/5">
-                        
+
                         {/* Errors / Not Found Alert */}
                         {state.notFound && state.notFound.length > 0 && (
                             <div className="max-w-3xl mx-auto bg-rose-950/30 border border-rose-500/20 rounded-2xl p-6 md:p-8 backdrop-blur-sm relative overflow-hidden">
@@ -121,14 +121,14 @@ export default function AnalyzePage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 gap-6">
                             {state.found.map((card: any, idx: number) => (
                                 <div key={idx} className="group relative bg-[#0a0f20]/80 rounded-[2rem] border border-white/5 p-4 hover:border-indigo-500/40 hover:bg-[#0f152e] transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 flex flex-col h-full backdrop-blur-md">
-                                    
+
                                     {/* Card Image Wrapper */}
                                     <div className="relative aspect-[5/7] w-full bg-[#050510] rounded-[1.5rem] overflow-hidden mb-5 border border-white/5 shadow-inner">
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                         {card.imageUrl ? (
-                                            <img 
-                                                src={card.imageUrl} 
-                                                alt={card.name} 
+                                            <img
+                                                src={card.imageUrl}
+                                                alt={card.name}
                                                 className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
                                                 loading="lazy"
                                             />
@@ -143,7 +143,7 @@ export default function AnalyzePage() {
                                             {card.quantity}x
                                         </div>
                                     </div>
-                                    
+
                                     {/* Card Details */}
                                     <div className="flex flex-col flex-1 justify-between gap-4 px-2 pb-2">
                                         <div>
@@ -151,21 +151,20 @@ export default function AnalyzePage() {
                                                 {card.name}
                                             </h3>
                                             <div className="flex items-center gap-1.5 text-xs font-semibold text-indigo-400/80 uppercase tracking-wide">
-                                                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                                                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                                 {card.set}
                                             </div>
                                         </div>
-                                        
+
                                         <div className="p-3 bg-white/[0.03] rounded-xl border border-white/[0.05] flex justify-between items-center group-hover:bg-indigo-500/5 transition-colors">
                                             <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Lifespan</span>
                                             {card.monthsLeft > 0 ? (
-                                                <span className={`flex items-center gap-1 font-bold text-sm ${
-                                                    card.monthsLeft < 6 
-                                                        ? 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]' 
-                                                        : card.monthsLeft <= 12 
-                                                            ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]' 
+                                                <span className={`flex items-center gap-1 font-bold text-sm ${card.monthsLeft < 6
+                                                        ? 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]'
+                                                        : card.monthsLeft <= 12
+                                                            ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]'
                                                             : 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]'
-                                                }`}>
+                                                    }`}>
                                                     {card.monthsLeft} {card.monthsLeft === 1 ? "month" : "months"}
                                                 </span>
                                             ) : (
@@ -175,7 +174,7 @@ export default function AnalyzePage() {
                                             )}
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             ))}
                         </div>
