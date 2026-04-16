@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { analyzeDeckAction } from "@/app/analyze/actions";
+import { analyzeDeckAction } from "@/app/actions";
 
 export async function POST(req: NextRequest) {
     const text = await req.text();
