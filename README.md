@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chronomagical Tracker (MTG Deck Explorer)
+
+A modern, highly-polished Next.js application that allows Magic: The Gathering players to paste their MTG Arena decklists and instantly analyze the Standard rotation lifespan of their cards.
+
+## Features
+
+- **MTG Arena Import**: Simply paste your exported decklist from MTG Arena.
+- **Smart Rotation Analysis**: Automatically queries the Scryfall API, filtering out non-Standard sets (like Commander, Masters, and Alchemy) to determine the true lifecycle of your cards.
+- **Visual Analytics**: Interactive cards displaying exact quantities, fetched artwork, and color-coded expiration timelines (Red for `< 6 months`, Yellow for `<= 12 months`, Green for safe spells).
+- **Graceful Error Handling**: Detects and compiles a list of cards that couldn't be parsed or found, returning them clearly to the user.
+- **Premium Mystical Aesthetic**: Built with Tailwind CSS, featuring modern glassmorphism, responsive grids, animated ambient background glows, and a deeply atmospheric space-magic Dark UI.
+
+## Built With
+
+- [Next.js](https://nextjs.org/) (App Router & Server Actions)
+- [React](https://reactjs.org/) 
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Scryfall API](https://scryfall.com/docs/api) (Data & Artwork)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You need Node.js installed on your machine. We recommend using `pnpm`, but `npm` or `yarn` will work perfectly as well.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Navigate into the directory:
+   ```bash
+   cd project_magic
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   pnpm install
+   # or npm install
+   # or yarn install
+   ```
 
-## Learn More
+3. Run the local development server:
+   ```bash
+   pnpm dev
+   # or npm run dev
+   # or yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open your browser and visit: [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Open the web app in your browser.
+2. In MTG Arena, browse your decks and click **Export**.
+3. Paste the contents into the text area of the application. Make sure your client is set to English to avoid mismatched translations, as Scryfall's exact search performs best with original names!
+4. Click **Scan Rotation**. Depending on the size of your submitted deck, the Chronomagical Tracker will fetch data asynchronously with a built-in 500ms rate-limiting protection to avoid server blocks.
+5. See when your deck becomes unplayable in Standard and plan your next moves!
 
-## Deploy on Vercel
+## Legal and License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is for educational and community use. 
+Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.
+Powered by the incredibly generous [Scryfall API](https://scryfall.com/).
