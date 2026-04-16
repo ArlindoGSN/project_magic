@@ -14,6 +14,7 @@ export const mtgClient = {
                 return {
                     name: data.name,
                     set: data.set,
+                    imageUrl: data.image_uris?.normal || data.card_faces?.[0]?.image_uris?.normal || "",
                 };
             }
 
@@ -24,6 +25,7 @@ export const mtgClient = {
             return {
                 name: card.name,
                 set: card.set, // set code e.g. "neo"
+                imageUrl: card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal || "",
             };
         } catch (e) {
             console.error("Error fetching from Scryfall:", e);

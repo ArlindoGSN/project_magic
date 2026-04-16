@@ -12,6 +12,7 @@ export async function analyzeDeckAction(prevState: any, formData: FormData) {
     const cards = parseDeckList(deckText);
 
     const result = [];
+    const notFound = [];
     console.log("Parsed cards:", cards);
 
     for (const card of cards) {
@@ -21,10 +22,12 @@ export async function analyzeDeckAction(prevState: any, formData: FormData) {
             
             if (!mtgCard) {
                 console.log(`[WARN] Card not found in API: ${card.name}`);
+                notFound.push(card.name);
                 continue;
             }
             if (!mtgCard.set) {
                 console.log(`[WARN] Card has no set: ${card.name}`);
+                notFound.push(card.name);
                 continue;
             }
 
@@ -41,14 +44,19 @@ export async function analyzeDeckAction(prevState: any, formData: FormData) {
             result.push({
                 ...card,
                 set: set.name,
+                imageUrl: mtgCard.imageUrl,
                 monthsLeft: getMonthsUntilRotation(rotationDate),
             });
-            // Small delay to prevent rate limiting (using 3 seconds)
-            await new Promise((resolve) => setTimeout(resolve, 3000));
+            // Small delay to prevent rate limiting (using 500ms as requested)
+            await new Promise((resolve) => setTimeout(resolve, 500));
         } catch (e) {
             console.error(`Error fetching ${card.name}:`, e);
+            notFound.push(card.name);
         }
     }
 
-    return result.filter(Boolean);
+    return {
+        found: result.filter(Boolean),
+        notFound: notFound
+    };
 }
