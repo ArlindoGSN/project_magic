@@ -39,7 +39,7 @@ export async function analyzeDeckAction(prevState: any, formData: FormData) {
                 continue;
             }
 
-            const rotationDate = calculateRotationDate(set.releaseDate);
+            const rotationDate = calculateRotationDate(set);
 
             result.push({
                 ...card,
